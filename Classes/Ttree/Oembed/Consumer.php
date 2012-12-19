@@ -23,6 +23,7 @@ namespace Ttree\Oembed;
 
 use TYPO3\Flow\Annotations as Flow;
 use Ttree\Oembed\Resource\AbstractResource;
+use TYPO3\Flow\Utility\Arrays;
 
 /**
  * oEmbed Consumer
@@ -49,6 +50,11 @@ class Consumer {
 	const FORMAT_DEFAULT = self::FORMAT_JSON;
 
 	/**
+	 * oEmbed version.
+	 */
+	const VERSION = '1.0';
+
+	/**
 	 * @Flow\Inject
 	 * @var \Ttree\Oembed\Browser
 	 */
@@ -65,6 +71,11 @@ class Consumer {
 	 * @var Provider[]
 	 */
 	protected $providers = array();
+
+	/**
+	 * @var \Ttree\Oembed\RequestParameters
+	 */
+	protected $requestParameters = NULL;
 
 	/**
 	 * Set the available providers.
@@ -88,7 +99,7 @@ class Consumer {
 	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function consume($url, Provider $provider = NULL, $format = self::FORMAT_DEFAULT) {
-		$cacheKey = sha1($url);
+		$cacheKey = sha1($url . json_encode($this->requestParameters->toArray()));
 
 		// Check if the resource is cached
 		if ($this->resourceCache->has($cacheKey)) {
@@ -157,8 +168,13 @@ class Consumer {
 	protected function buildOEmbedRequestUrl($resource, $endPoint, $format = self::FORMAT_DEFAULT) {
 		$parameters = array(
 			'url'    => $resource,
-			'format' => $format
+			'format' => $format,
+			'version' => self::VERSION
 		);
+
+		if ($this->getRequestParameters() !== NULL) {
+			$parameters = Arrays::arrayMergeRecursiveOverrule($this->getRequestParameters()->toArray(), $parameters);
+		}
 
 		$urlParams = http_build_query($parameters, '', '&');
 		$url       = $endPoint . ((strpos($endPoint, '?') !== FALSE) ? '&' : '?') . $urlParams;
@@ -180,6 +196,20 @@ class Consumer {
 		}
 
 		return NULL;
+	}
+
+	/**
+	 * @param \Ttree\Oembed\RequestParameters $requestParameters
+	 */
+	public function setRequestParameters(RequestParameters $requestParameters) {
+		$this->requestParameters = $requestParameters;
+	}
+
+	/**
+	 * @return \Ttree\Oembed\RequestParameters
+	 */
+	public function getRequestParameters() {
+		return $this->requestParameters;
 	}
 }
 
