@@ -22,3 +22,8 @@ More specifically, `Ttree.Oembed` provides:
 
 * oEmbed resource consumer
 * oEmbed endPoint auto discovery
+
+License
+-------
+
+The code is licensed under the `GPL license <http://www.gnu.org/licenses/gpl.html>`_.
