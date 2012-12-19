@@ -23,6 +23,52 @@ More specifically, `Ttree.Oembed` provides:
 * oEmbed resource consumer
 * oEmbed endPoint auto discovery
 
+Code Sample
+-----------
+
+A simple request
+~~~~~~~~~~~~~~~~
+
+If you don't provide a Provider to the consume method, the consumer will try to automaticaly
+discover oEmbed URL in the page content, if no compatible URL are found the consumer will
+throw an exception.
+
+::
+	$consumer = new \Ttree\Oembed\Consumer();
+
+	$resource = $consumer->consume("http://vimeo.com/6132324");
+	
+	print $resource;
+
+A simple request with a given provider
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can define additional provider, just check the example providers in the Package.
+
+::
+	$consumer = new \Ttree\Oembed\Consumer();
+
+	$resource = $consumer->consume("http://vimeo.com/6132324", new \Ttree\Oembed\Provider\Vimeo());
+
+	print $resource;
+
+A simple request with custome paramaters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Supported parameters are "maxwidth" and "maxheight".
+
+::
+	$consumer = new \Ttree\Oembed\Consumer();
+
+	$requestParameters = new \Ttree\Oembed\RequestParameters();
+	$requestParameters->setMaxWidth(800);
+
+	$consumer->setRequestParameters($requestParameters);
+
+	$resource = $consumer->consume("http://vimeo.com/6132324");
+
+	print $resource;
+
 License
 -------
 
