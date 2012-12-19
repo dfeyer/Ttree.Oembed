@@ -28,6 +28,7 @@ use Ttree\Oembed\Provider;
  * oEmbed Link
  *
  * @package Ttree.Oembed
+ * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
 class DailyMotion extends Provider {

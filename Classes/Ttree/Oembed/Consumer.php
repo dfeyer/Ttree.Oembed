@@ -28,6 +28,7 @@ use Ttree\Oembed\Resource\AbstractResource;
  * oEmbed Consumer
  *
  * @package Ttree.Oembed
+ * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
 class Consumer {

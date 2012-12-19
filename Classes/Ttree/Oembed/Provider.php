@@ -28,6 +28,7 @@ use Ttree\Oembed\Url\Schema;
  * oEmbed Provider
  *
  * @package Ttree.Oembed
+ * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
 class Provider {

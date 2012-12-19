@@ -28,6 +28,7 @@ use TYPO3\Flow\Reflection\ObjectAccess;
  * oEmbed AbstractResource
  *
  * @package Ttree.Oembed
+ * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
 abstract class AbstractResource {

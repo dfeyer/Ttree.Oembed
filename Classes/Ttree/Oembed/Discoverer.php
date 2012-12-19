@@ -27,6 +27,7 @@ use TYPO3\Flow\Annotations as Flow;
  * oEmbed Discoverer
  *
  * @package Ttree.Oembed
+ * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
 
