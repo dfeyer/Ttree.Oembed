@@ -34,10 +34,11 @@ discover oEmbed URL in the page content, if no compatible URL are found the cons
 throw an exception.
 
 ::
+
 	$consumer = new \Ttree\Oembed\Consumer();
 
 	$resource = $consumer->consume("http://vimeo.com/6132324");
-	
+
 	print $resource;
 
 A simple request with a given provider
@@ -46,6 +47,7 @@ A simple request with a given provider
 You can define additional provider, just check the example providers in the Package.
 
 ::
+
 	$consumer = new \Ttree\Oembed\Consumer();
 
 	$resource = $consumer->consume("http://vimeo.com/6132324", new \Ttree\Oembed\Provider\Vimeo());
@@ -58,6 +60,7 @@ A simple request with custome paramaters
 Supported parameters are "maxwidth" and "maxheight".
 
 ::
+
 	$consumer = new \Ttree\Oembed\Consumer();
 
 	$requestParameters = new \Ttree\Oembed\RequestParameters();
