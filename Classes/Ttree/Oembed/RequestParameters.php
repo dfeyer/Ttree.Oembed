@@ -43,11 +43,20 @@ class RequestParameters {
 	protected $maxHeight = NULL;
 
 	/**
+	 * @param int $maxHeight
+	 * @param int $maxWidth
+	 */
+	public function __construct($maxHeight, $maxWidth) {
+		$this->maxHeight = $maxHeight;
+		$this->maxWidth  = $maxWidth;
+	}
+
+	/**
 	 * @return array
 	 */
 	public function toArray() {
 		$parameters = array(
-			'maxwidth' => $this->maxWidth,
+			'maxwidth'  => $this->maxWidth,
 			'maxheight' => $this->maxHeight,
 		);
 
