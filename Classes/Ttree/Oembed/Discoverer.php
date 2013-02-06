@@ -78,12 +78,16 @@ class Discoverer {
 	 *
 	 * @param string $url The URL to get the endpoint's URL for.
 	 * @return string
+	 * @throws Exception
 	 */
 	public function getEndpointForUrl($url) {
 		$cacheKey = sha1($url . $this->preferredFormat . json_encode($this->supportedFormats));
 
 		if (!isset($this->cachedEndpoints[$url])) {
 			$this->cachedEndpoints[$url] = $this->fetchEndpointForUrl($url);
+			if (trim($this->cachedEndpoints[$url]) === '') {
+				throw new Exception('Empty url endpoints', 1360175845);
+			}
 			$this->endPointCache->set($cacheKey, $this->cachedEndpoints[$url]);
 		} elseif ($this->endPointCache->has($cacheKey) === TRUE) {
 			$this->cachedEndpoints[$url] = $this->endPointCache->get($cacheKey);
