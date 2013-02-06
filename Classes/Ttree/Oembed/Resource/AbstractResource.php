@@ -158,6 +158,25 @@ abstract class AbstractResource {
 	}
 
 	/**
+	 * @return array
+	 */
+	public function toArray() {
+		return array(
+			'type' => $this->type,
+			'version' => $this->version,
+			'authorName' => $this->authorUrl,
+			'authorUrl' => $this->authorUrl,
+			'providerName' => $this->providerName,
+			'providerUrl' => $this->providerUrl,
+			'cacheAge' => $this->cacheAge,
+			'thumnailUrl' => $this->thumbnailUrl,
+			'thumnailWidth' => $this->thumbnailWidth,
+			'thumnailHeight' => $this->thumbnailHeight,
+			'content' => (string)$this
+		);
+	}
+
+	/**
 	 * @param string $authorName
 	 * @return \Ttree\Oembed\AbstractResource
 	 */
