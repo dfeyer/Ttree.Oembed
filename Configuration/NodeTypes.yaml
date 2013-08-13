@@ -1,0 +1,18 @@
+'Ttree.Oembed:Resource':
+  superTypes:
+    - 'TYPO3.Neos:Content'
+  ui:
+    group: General
+    label: 'oEmbed Resource'
+    inspector:
+      groups:
+        options:
+          label: 'oEmbed Resource'
+  properties:
+    uri:
+      type: string
+      ui:
+        label: 'Resource URI'
+        reloadIfChanged: true
+        inspector:
+          group: options
