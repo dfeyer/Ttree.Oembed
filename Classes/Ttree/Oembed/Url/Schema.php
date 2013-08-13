@@ -39,7 +39,7 @@ class Schema {
 
 	public function __construct($scheme) {
 		if (!is_string($scheme)) {
-			throw new InvalidArgumentException(
+			throw new \InvalidArgumentException(
 				'$scheme must be a string.'
 			);
 		}
