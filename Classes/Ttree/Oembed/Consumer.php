@@ -11,8 +11,9 @@ namespace Ttree\Oembed;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
 use Ttree\Oembed\Resource\AbstractResource;
+use Ttree\Oembed\RequestParameters;
+use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Utility\Arrays;
 
 /**
@@ -88,7 +89,11 @@ class Consumer {
 	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function consume($url, Provider $provider = NULL, $format = self::FORMAT_DEFAULT) {
-		$cacheKey = sha1($url . json_encode($this->requestParameters->toArray()));
+		if ($this->requestParameters instanceof RequestParameters) {
+			$cacheKey = sha1($url . json_encode($this->requestParameters->toArray()));
+		} else {
+			$cacheKey = sha1($url);
+		}
 
 		// Check if the resource is cached
 		if ($this->resourceCache->has($cacheKey)) {
