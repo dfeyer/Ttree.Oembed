@@ -29,7 +29,7 @@ Code Sample
 A simple request
 ~~~~~~~~~~~~~~~~
 
-If you don't provide a Provider to the consume method, the consumer will try to automaticaly
+If you don't provide a Provider to the consume method, the consumer will try to automatically
 discover oEmbed URL in the page content, if no compatible URL are found the consumer will
 throw an exception.
 
@@ -54,7 +54,7 @@ You can define additional provider, just check the example providers in the Pack
 
 	print $resource;
 
-A simple request with custome paramaters
+A simple request with custom parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Supported parameters are "maxwidth" and "maxheight".

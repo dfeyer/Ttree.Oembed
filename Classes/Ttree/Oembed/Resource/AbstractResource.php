@@ -102,7 +102,7 @@ abstract class AbstractResource {
 	/**
 	 * Create a Resource object from the supplied resource.
 	 *
-	 * @param stdClass $resource The resource to create an Resource from.
+	 * @param \stdClass $resource The resource to create an Resource from.
 	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 * @throws \Ttree\Oembed\Exception
 	 * @todo create a proper factory
@@ -131,14 +131,14 @@ abstract class AbstractResource {
 	}
 
 	/**
-	 * Get a string reprenstation of the oEmbed resource.
+	 * Get a string representation of the oEmbed resource.
 	 *
 	 * @return string
 	 */
 	abstract public function getAsString();
 
 	/**
-	 * Get a string reprenstation of the oEmbed resource.
+	 * Get a string representation of the oEmbed resource.
 	 *
 	 * @return string
 	 */
@@ -167,7 +167,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param string $authorName
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setAuthorName($authorName) {
 		$this->authorName = $authorName;
@@ -184,7 +184,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param string $authorUrl
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setAuthorUrl($authorUrl) {
 		$this->authorUrl = $authorUrl;
@@ -201,7 +201,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param int $cacheAge
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setCacheAge($cacheAge) {
 		$this->cacheAge = $cacheAge;
@@ -218,7 +218,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param string $providerName
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setProviderName($providerName) {
 		$this->providerName = $providerName;
@@ -235,7 +235,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param string $providerUrl
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setProviderUrl($providerUrl) {
 		$this->providerUrl = $providerUrl;
@@ -252,7 +252,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param int $thumbnailHeight
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setThumbnailHeight($thumbnailHeight) {
 		$this->thumbnailHeight = $thumbnailHeight;
@@ -269,7 +269,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param string $thumbnailUrl
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setThumbnailUrl($thumbnailUrl) {
 		$this->thumbnailUrl = $thumbnailUrl;
@@ -286,7 +286,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param int $thumbnailWidth
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setThumbnailWidth($thumbnailWidth) {
 		$this->thumbnailWidth = $thumbnailWidth;
@@ -303,7 +303,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param string $title
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
@@ -320,7 +320,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param string $type
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setType($type) {
 		$this->type = $type;
@@ -337,7 +337,7 @@ abstract class AbstractResource {
 
 	/**
 	 * @param string $version
-	 * @return \Ttree\Oembed\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource
 	 */
 	public function setVersion($version) {
 		$this->version = $version;
