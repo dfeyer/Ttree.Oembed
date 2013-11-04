@@ -2,7 +2,7 @@
   superTypes:
     - 'TYPO3.Neos:Content'
   ui:
-    group: General
+    group: 'general'
     label: 'oEmbed Resource'
     inspector:
       groups:
