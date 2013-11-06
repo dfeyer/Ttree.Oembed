@@ -12,6 +12,7 @@ namespace Ttree\Oembed\ViewHelpers;
  *                                                                        */
 
 use Ttree\Oembed\Consumer;
+use Ttree\Oembed\RequestParameters;
 use TYPO3\Flow\Annotations as Flow;
 
 /**
@@ -44,13 +45,29 @@ class EmbedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 	 * Renders a representation of a oEmbed resource
 	 *
 	 * @param string $uri
+	 * @param integer $maxWidth
+	 * @param integer $maxHeight
 	 * @param string $objectName
 	 * @return string
 	 * @throws \TYPO3\Fluid\Core\ViewHelper\Exception
 	 */
-	public function render($uri, $objectName = NULL) {
+	public function render($uri, $maxWidth = 0, $maxHeight = 0,  $objectName = NULL) {
 		$html = '';
 		$consumer = new Consumer();
+
+		if ($maxWidth > 0 || $maxHeight > 0) {
+			$requestParameters = new RequestParameters();
+
+			if ($maxWidth > 0) {
+				$requestParameters->setMaxWidth($maxWidth);
+			}
+			if ($maxHeight > 0) {
+				$requestParameters->setMaxHeight($maxHeight);
+			}
+
+			$consumer->setRequestParameters($requestParameters);
+		}
+
 		$resourceObject = $consumer->consume($uri);
 
 		if ($resourceObject !== NULL) {

@@ -16,3 +16,19 @@
         reloadIfChanged: true
         inspector:
           group: options
+    maxWidth:
+      type: integer
+      defaultValue: 0
+      ui:
+        label: max.Width
+        reloadIfChanged: TRUE
+        inspector:
+          group: options
+    maxHeight:
+      type: integer
+      defaultValue: 0
+      ui:
+        label: max.Height
+        reloadIfChanged: TRUE
+        inspector:
+          group: options

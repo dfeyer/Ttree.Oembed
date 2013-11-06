@@ -3,7 +3,7 @@
 <neos:contentElement node="{node}">
 	<f:if condition="{uri}">
 		<f:then>
-			<o:embed uri="{uri}" />
+			<o:embed uri="{uri}" maxWidth="{maxWidth}" maxHeight="{maxHeight}"/>
 		</f:then>
 		<f:else>
 			<p>No valid resource uri given to oEmbed Content.</p>
