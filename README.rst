@@ -1,78 +1,54 @@
-.. -*- mode: rst -*-
+oEmbed utility package for TYPO3 Flow & Fluid with support for TYPO3 Neos
+=========================================================================
 
-Ttree.Oembed
-======
+This package for TYPO3 Flow and Fluid add support for oEmbed.
 
-This is a TYPO3 Flow package to consume oEmbed resource in your
-application, you found the last version on Github:
-`github.com/dfeyer/Ttree.Oembed <https://github.com/dfeyer/Ttree.Oembed>`_.
+This package also contain a TYPO3 Neos Node Type definition to integrate oEmbed resources in your Neos project.
 
-About
------
+created by Dominique Feyer <dfeyer@ttree.ch> http://www.ttree.ch
 
-`Ttree.Oembed` is based on a RRoEmbed, originaly published on Github, some years ago:
-`github.com/romac/RRoEmbed <https://github.com/romac/RRoEmbed/>`_ under double
-licence MIT and GPL.
+Features
+========
 
-This package include some adapation based on TYPO3 Flow API, like cache, HTTP request based
-on the default Browser provided by Flow and add some new feature, like providing custom
-request parameters like maxwidth and maxheight.
+- Consume oEmbed resource
+- TYPO3 Fluid oEmbed ViewHelper
+- TYPO3 Neos Node Type definition
 
-More specifically, `Ttree.Oembed` provides:
+How to use the plugin ?
+=======================
 
-* oEmbed resource consumer
-* oEmbed endPoint auto discovery
+You need to install the package with composer, nothing else.
 
-Code Sample
------------
+How to use the Fluid Viewhelper ?
+=================================
 
-A simple request
-~~~~~~~~~~~~~~~~
+You can simply send your oEmbed resource URI to the ViewHelper, like this::
 
-If you don't provide a Provider to the consume method, the consumer will try to automatically
-discover oEmbed URL in the page content, if no compatible URL are found the consumer will
-throw an exception.
+	{namespace o=Ttree\Oembed\ViewHelpers}
+	<o:embed uri="{uri}" />
 
-::
+How to render responsive or fluid oEmbed resource ?
+===================================================
 
-	$consumer = new \Ttree\Oembed\Consumer();
+Responsive Design is a common need for modern website. If you need responsive layout for your video,
+you can add the following LESS, or in CSS, to your site::
 
-	$resource = $consumer->consume("http://vimeo.com/6132324");
+	.oembed-video-container {
+		position: relative;
+		margin: 20px 0;
+		padding-bottom: 56.25%;
+		padding-top: 30px;
+		height: 0;
+		overflow: hidden;
+		> iframe, > object, > embed {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
 
-	print $resource;
+This example come from an nice article from Ruairi Phelan, published on CyberDesignCraft_.
 
-A simple request with a given provider
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You can define additional provider, just check the example providers in the Package.
-
-::
-
-	$consumer = new \Ttree\Oembed\Consumer();
-
-	$resource = $consumer->consume("http://vimeo.com/6132324", new \Ttree\Oembed\Provider\Vimeo());
-
-	print $resource;
-
-A simple request with custom parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Supported parameters are "maxwidth" and "maxheight".
-
-::
-
-	$consumer = new \Ttree\Oembed\Consumer();
-
-	$requestParameters = new \Ttree\Oembed\RequestParameters();
-	$requestParameters->setMaxWidth(800);
-
-	$consumer->setRequestParameters($requestParameters);
-
-	$resource = $consumer->consume("http://vimeo.com/6132324");
-
-	print $resource;
-
-License
--------
-
-The code is licensed under the `GPL license <http://www.gnu.org/licenses/gpl.html>`_.
+.. _CyberDesignCraft http://cyberdesigncraft.com/responsive-video-embed/
