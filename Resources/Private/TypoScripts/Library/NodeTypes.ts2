@@ -1,5 +1,0 @@
-prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Template)
-prototype(Ttree.Oembed:Resource) {
-    templatePath = 'resource://Ttree.Oembed/Private/Templates/TypoScript/Resource.html'
-    uri = ${q(node).property('uri')}
-}

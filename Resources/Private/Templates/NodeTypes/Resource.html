@@ -1,9 +1,11 @@
 {namespace o=Ttree\Oembed\ViewHelpers}
 {namespace neos=TYPO3\Neos\ViewHelpers}
-<neos:contentElement node="{node}" reloadable="TRUE">
+<neos:contentElement node="{node}">
 	<f:if condition="{uri}">
 		<f:then>
-			<o:embed uri="{uri}" />
+			<div class="oembed-video-container">
+				<o:embed uri="{uri}" />
+			</div>
 		</f:then>
 		<f:else>
 			<p>No valid resource uri given to oEmbed Content.</p>
