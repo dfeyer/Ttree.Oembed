@@ -16,3 +16,15 @@
         reloadIfChanged: true
         inspector:
           group: options
+    hasCaption:
+      type: boolean
+      ui:
+        label: 'Enable caption'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'options'
+    caption:
+      type: string
+      defaultValue: 'Enter caption here'
+      ui:
+        inlineEditable: TRUE

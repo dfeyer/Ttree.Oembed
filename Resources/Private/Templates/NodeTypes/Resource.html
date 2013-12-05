@@ -1,14 +1,16 @@
-{namespace o=Ttree\Oembed\ViewHelpers}
 {namespace neos=TYPO3\Neos\ViewHelpers}
-<neos:contentElement node="{node}">
-	<f:if condition="{uri}">
+<div class="oembed-video">
+	<f:if condition="{content}">
 		<f:then>
 			<div class="oembed-video-container">
-				<o:embed uri="{uri}" />
+				{content -> f:format.raw()}
 			</div>
+			<f:if condition="{hasCaption}">
+				{neos:contentElement.editable(property:'caption', tag: 'div', class: 'oembed-video-caption')}
+			</f:if>
 		</f:then>
 		<f:else>
-			<p>No valid resource uri given to oEmbed Content.</p>
+			<p><i>Invalid resource URI given to oEmbed Content.</i></p>
 		</f:else>
 	</f:if>
-</neos:contentElement>
+</div>

@@ -1,0 +1,13 @@
+prototype(Ttree.Oembed:OEmbedConsumer) {
+	@class = '\\Ttree\\Oembed\\TypoScript\\OEmbedConsumerImplementation'
+	uri = ${q(node).property('uri')}
+}
+
+prototype(Ttree.Oembed:Resource) >
+prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
+	templatePath = 'resource://Ttree.Oembed/Private/Templates/NodeTypes/Resource.html'
+
+	content = Ttree.Oembed:OEmbedConsumer
+	hasCaption = ${q(node).property('hasCaption')}
+	caption = ${q(node).property('caption') ? q(node).property('caption') : 'Enter caption here'}
+}
