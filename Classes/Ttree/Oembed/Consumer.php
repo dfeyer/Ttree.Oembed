@@ -86,7 +86,7 @@ class Consumer {
 	 * @param  string   $url                  The URL of the resource to consume.
 	 * @param  Provider $provider             The provider to use.
 	 * @param  string   $format               The format of the data to fetch.
-	 * @return \Ttree\Oembed\Resource\AbstractResource
+	 * @return \Ttree\Oembed\Resource\AbstractResource An object representation of the oEmbed resource or NULL on error
 	 */
 	public function consume($url, Provider $provider = NULL, $format = self::FORMAT_DEFAULT) {
 		if ($this->requestParameters instanceof RequestParameters) {
@@ -100,29 +100,33 @@ class Consumer {
 			return $this->resourceCache->get($cacheKey);
 		}
 
-		// Try to find a provider matching the supplied URL if no one has been supplied.
-		if (!$provider) {
-			$provider = $this->findProviderForUrl($url);
+		try {
+			// Try to find a provider matching the supplied URL if no one has been supplied.
+			if (!$provider) {
+				$provider = $this->findProviderForUrl($url);
+			}
+
+			if ($provider) {
+				// If a provider was supplied or we found one, store the endpoint URL.
+				$endPoint = $provider->getEndpoint();
+			} else {
+				// If no provider was found, try to discover the endpoint URL.
+				$discover = new Discoverer();
+				$endPoint = $discover->getEndpointForUrl($url);
+			}
+
+			$requestUrl = $this->buildOEmbedRequestUrl($url, $endPoint, $format);
+			$content    = $this->browser->getContent($requestUrl);
+
+			$methodName = 'process' . ucfirst(strtolower($format)) . 'Response';
+
+			$resource = $this->$methodName($content);
+
+			// Save the resource in cache
+			$this->resourceCache->set($cacheKey, $resource);
+		} catch (\TYPO3\Flow\Http\Exception $exception) {
+			$resource = NULL;
 		}
-
-		if ($provider) {
-			// If a provider was supplied or we found one, store the endpoint URL.
-			$endPoint = $provider->getEndpoint();
-		} else {
-			// If no provider was found, try to discover the endpoint URL.
-			$discover = new Discoverer();
-			$endPoint = $discover->getEndpointForUrl($url);
-		}
-
-		$requestUrl = $this->buildOEmbedRequestUrl($url, $endPoint, $format);
-		$content    = $this->browser->getContent($requestUrl);
-
-		$methodName = 'process' . ucfirst(strtolower($format)) . 'Response';
-
-		$resource = $this->$methodName($content);
-
-		// Save the resource in cache
-		$this->resourceCache->set($cacheKey, $resource);
 
 		return $resource;
 	}
