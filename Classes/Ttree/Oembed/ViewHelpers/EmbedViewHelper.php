@@ -49,7 +49,6 @@ class EmbedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 	 * @throws \TYPO3\Fluid\Core\ViewHelper\Exception
 	 */
 	public function render($uri, $objectName = NULL) {
-		$html = '';
 		$consumer = new Consumer();
 		$resourceObject = $consumer->consume($uri);
 
@@ -64,6 +63,8 @@ class EmbedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 			} else {
 				$html = $resourceObject->getAsString();
 			}
+		} else {
+			$html = 'Invalid oEmbed Resource';
 		}
 
 		return $html;
