@@ -21,7 +21,7 @@ prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
 	hasCaption = ${q(node).property('hasCaption')}
 	url = ${q(node).property('uri')}
 
-	captionAttributes = TYPO3.Neos:Attributes
+	captionAttributes = TYPO3.TypoScript:Attributes
 	captionAttributes.class = 'oembed-video-caption'
 	captionAttributes.itemprop = 'description'
 
