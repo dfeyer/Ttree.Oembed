@@ -2,7 +2,6 @@
 	"name": "ttree/oembed",
 	"type": "typo3-flow-package",
 	"description": "oEmbed utility package for TYPO3 Flow & Fluid with support for TYPO3 Neos",
-	"version": "1.0",
 	"require": {
 		"typo3/flow": "*"
 	},
