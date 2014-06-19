@@ -98,11 +98,10 @@ class Discoverer {
 
 		try {
 			$content = $this->browser->getContent($url);
-		} catch (Exception $e) {
+		} catch (Exception $exception) {
 			throw new Exception(
-				'Unable to fetch the page body for "' . $url . '".',
-				Exception::PAGE_BODY_FETCH_FAILED,
-				$e
+				'Unable to fetch the page body for "' . $url . '": ' . $exception->getMessage(),
+				Exception::PAGE_BODY_FETCH_FAILED
 			);
 		}
 
@@ -144,5 +143,3 @@ class Discoverer {
 		return $matches[1];
 	}
 }
-
-?>
