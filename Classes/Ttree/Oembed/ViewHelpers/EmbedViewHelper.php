@@ -12,7 +12,9 @@ namespace Ttree\Oembed\ViewHelpers;
  *                                                                        */
 
 use Ttree\Oembed\Consumer;
+use Ttree\Oembed\RequestParameters;
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Fluid\Core\ViewHelper\Exception;
 
 /**
  * Renders a representation of a oEmbed resource.
@@ -44,18 +46,23 @@ class EmbedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 	 * Renders a representation of a oEmbed resource
 	 *
 	 * @param string $uri
+	 * @param integer $maxWidth
+	 * @param integer $maxHeight
 	 * @param string $objectName
 	 * @return string
-	 * @throws \TYPO3\Fluid\Core\ViewHelper\Exception
+	 * @throws Exception
 	 */
-	public function render($uri, $objectName = NULL) {
+	public function render($uri, $maxWidth = 0, $maxHeight = 0, $objectName = NULL) {
 		$consumer = new Consumer();
+
+		$this->prepareRequestParameters($maxWidth, $maxHeight, $consumer);
+
 		$resourceObject = $consumer->consume($uri);
 
 		if ($resourceObject !== NULL) {
 			if ($objectName !== NULL) {
 				if ($this->templateVariableContainer->exists($objectName)) {
-					throw new \TYPO3\Fluid\Core\ViewHelper\Exception('Object name for EmbedViewHelper given as: ' . htmlentities($objectName) . '. This variable name is already in use, choose another.', 1359969229);
+					throw new Exception('Object name for EmbedViewHelper given as: ' . htmlentities($objectName) . '. This variable name is already in use, choose another.', 1359969229);
 				}
 				$this->templateVariableContainer->add($objectName, $resourceObject);
 				$html = $this->renderChildren();
@@ -68,6 +75,26 @@ class EmbedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
 		}
 
 		return $html;
+	}
+
+	/**
+	 * @param integer $maxWidth
+	 * @param integer $maxHeight
+	 * @param Consumer $consumer
+	 */
+	protected function prepareRequestParameters($maxWidth, $maxHeight, Consumer $consumer) {
+		if ($maxWidth > 0 || $maxHeight > 0) {
+			$requestParameters = new RequestParameters($maxHeight, $maxWidth);
+
+			if ($maxWidth > 0) {
+				$requestParameters->setMaxWidth($maxWidth);
+			}
+			if ($maxHeight > 0) {
+				$requestParameters->setMaxHeight($maxHeight);
+			}
+
+			$consumer->setRequestParameters($requestParameters);
+		}
 	}
 }
 ?>

@@ -12,6 +12,7 @@ namespace Ttree\Oembed\TypoScript;
  *                                                                          */
 
 use Ttree\Oembed\Consumer;
+use Ttree\Oembed\RequestParameters;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
 use TYPO3\TypoScript\TypoScriptObjects\AbstractTypoScriptObject;
@@ -29,6 +30,16 @@ class OEmbedConsumerImplementation extends AbstractTypoScriptObject {
 	protected $uri;
 
 	/**
+	 * @var integer
+	 */
+	protected $maxWidth;
+
+	/**
+	 * @var integer
+	 */
+	protected $maxHeight;
+
+	/**
 	 * @var NodeInterface
 	 */
 	protected $node;
@@ -38,6 +49,20 @@ class OEmbedConsumerImplementation extends AbstractTypoScriptObject {
 	 */
 	public function setUri($uri) {
 		$this->uri = $uri;
+	}
+
+	/**
+	 * @param integer $maxHeight
+	 */
+	public function setMaxHeight($maxHeight) {
+		$this->maxHeight = $maxHeight;
+	}
+
+	/**
+	 * @param integer $maxWidth
+	 */
+	public function setMaxWidth($maxWidth) {
+		$this->maxWidth = $maxWidth;
 	}
 
 	/**
@@ -53,14 +78,30 @@ class OEmbedConsumerImplementation extends AbstractTypoScriptObject {
 	public function evaluate() {
 		$resourceObject = NULL;
 
-		try {
-			$consumer = new Consumer();
-			$resourceObject = $consumer->consume($this->tsValue('uri'));
-		} catch (\Exception $exception) {
+		$consumer = new Consumer();
+		$this->prepareRequestParameters($consumer);
 
+		return $consumer->consume($this->tsValue('uri'));
+	}
+
+	/**
+	 * @param Consumer $consumer
+	 */
+	protected function prepareRequestParameters(Consumer $consumer) {
+		$maxWidth = $this->tsValue('maxWidth');
+		$maxHeight = $this->tsValue('maxHeight');
+		if ($maxWidth > 0 || $maxHeight > 0) {
+			$requestParameters = new RequestParameters($maxHeight, $maxWidth);
+
+			if ($maxWidth > 0) {
+				$requestParameters->setMaxWidth($maxWidth);
+			}
+			if ($maxHeight > 0) {
+				$requestParameters->setMaxHeight($maxHeight);
+			}
+
+			$consumer->setRequestParameters($requestParameters);
 		}
-
-		return $resourceObject;
 	}
 
 }

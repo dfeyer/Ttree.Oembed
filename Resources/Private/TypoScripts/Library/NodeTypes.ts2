@@ -1,11 +1,13 @@
 prototype(Ttree.Oembed:OEmbedConsumer) {
 	@class = '\\Ttree\\Oembed\\TypoScript\\OEmbedConsumerImplementation'
 	uri = ${q(node).property('uri')}
+	maxWidth = ${q(node).property('maxWidth')}
+	maxHeight = ${q(node).property('maxHeight')}
 }
 
 prototype(Ttree.Oembed:Resource) >
-prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
-	templatePath = 'resource://Ttree.Oembed/Private/Templates/NodeTypes/Resource.html'
+prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Template) {
+	templatePath = 'resource://Ttree.Oembed/Private/Templates/TypoScript/Resource.html'
 
 	attributes.itemscope = 'itemscope'
 	attributes.itemtype = 'http://schema.org/VideoObject'
