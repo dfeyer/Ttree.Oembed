@@ -11,9 +11,10 @@ namespace Ttree\Oembed;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use Ttree\Oembed\Exception;
 use Ttree\Oembed\Resource\AbstractResource;
-use Ttree\Oembed\RequestParameters;
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Log\SystemLoggerInterface;
 use TYPO3\Flow\Utility\Arrays;
 
 /**
@@ -68,6 +69,12 @@ class Consumer {
 	protected $requestParameters = NULL;
 
 	/**
+	 * @Flow\Inject
+	 * @var SystemLoggerInterface
+	 */
+	protected $systemLogger;
+
+	/**
 	 * Set the available providers.
 	 *
 	 * @param array $providers
@@ -106,7 +113,7 @@ class Consumer {
 				$provider = $this->findProviderForUrl($url);
 			}
 
-			if ($provider) {
+			if ($provider instanceof Provider) {
 				// If a provider was supplied or we found one, store the endpoint URL.
 				$endPoint = $provider->getEndpoint();
 			} else {
@@ -116,7 +123,7 @@ class Consumer {
 			}
 
 			$requestUrl = $this->buildOEmbedRequestUrl($url, $endPoint, $format);
-			$content    = $this->browser->getContent($requestUrl);
+			$content = $this->browser->getContent($requestUrl);
 
 			$methodName = 'process' . ucfirst(strtolower($format)) . 'Response';
 
@@ -124,11 +131,12 @@ class Consumer {
 
 			// Save the resource in cache
 			$this->resourceCache->set($cacheKey, $resource);
-		} catch (\TYPO3\Flow\Http\Exception $exception) {
+		} catch (Exception $exception) {
+			$this->systemLogger->logException($exception);
 			$resource = NULL;
 		}
 
-		return $resource;
+		return $this->postProcessResource($resource);
 	}
 
 	/**
@@ -153,6 +161,18 @@ class Consumer {
 		return AbstractResource::factory(
 			simplexml_load_string($response)
 		);
+	}
+
+	/**
+	 * @param string $resource
+	 * @return string
+	 */
+	protected function postProcessResource($resource) {
+		if (empty($resource)) {
+			return NULL;
+		}
+
+		return $resource;
 	}
 
 	/**
