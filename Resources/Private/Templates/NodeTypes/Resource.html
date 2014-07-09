@@ -1,19 +1,21 @@
 {namespace neos=TYPO3\Neos\ViewHelpers}
-<div{attributes -> f:format.raw()}>
-	<f:if condition="{content}">
-		<f:then>
-			<meta itemprop="url" content ="{url}">
-			<div class="oembed-video-container">
-				{content -> f:format.raw()}
-			</div>
-		</f:then>
-		<f:else>
-			<div class="oembed-video-error">{errorMessage -> f:format.raw()}</div>
-		</f:else>
-	</f:if>
-	<f:if condition="{hasCaption}">
-		<div{captionAttributes -> f:format.raw()}>
-		{neos:contentElement.editable(property:'caption')}
-		</div>
-	</f:if>
-</div>
+
+<f:if condition="{content}">
+    <f:then>
+        <div{attributes -> f:format.raw()}>
+        <meta itemprop="url" content="{url}">
+        <div class="oembed-video-container">
+            {content -> f:format.raw()}
+        </div>
+        <f:if condition="{hasCaption}">
+            <div
+            {captionAttributes -> f:format.raw()}>
+            {neos:contentElement.editable(property:'caption')}
+            </div>
+        </f:if>
+        </div>
+    </f:then>
+    <f:else>
+        <div class="oembed-video-error" style="margin: 1em 0;">{errorMessage -> f:format.raw()}</div>
+    </f:else>
+</f:if>

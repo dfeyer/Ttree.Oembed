@@ -9,23 +9,26 @@ prototype(Ttree.Oembed:Resource) >
 prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
 	templatePath = 'resource://Ttree.Oembed/Private/Templates/NodeTypes/Resource.html'
 
-	attributes.itemscope = 'itemscope'
-	attributes.itemtype = 'http://schema.org/VideoObject'
-	attributes.class = 'oembed-video'
+	attributes {
+		itemscope = 'itemscope'
+		itemtype = 'http://schema.org/VideoObject'
+		class = 'video-container'
+	}
 
 	content = Ttree.Oembed:OEmbedConsumer
 
 	errorMessage = TYPO3.TypoScript:Value {
-		value = 'Invalid resource URI given to oEmbed Content.'
+		value = 'Invalid resource URI, please check the property "Resource URI".'
 		@process.wrap = ${"<i>" + value + "</i>"}
 	}
 
 	hasCaption = ${q(node).property('hasCaption')}
 	url = ${q(node).property('uri')}
 
-	captionAttributes = TYPO3.TypoScript:Attributes
-	captionAttributes.class = 'oembed-video-caption'
-	captionAttributes.itemprop = 'description'
+	captionAttributes = TYPO3.TypoScript:Attributes {
+		class = 'oembed-video-caption'
+		itemprop = 'description'
+	}
 
 	caption = ${q(node).property('caption') ? q(node).property('caption') : 'Enter caption here'}
 }
