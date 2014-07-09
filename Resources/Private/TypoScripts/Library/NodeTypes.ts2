@@ -6,8 +6,8 @@ prototype(Ttree.Oembed:OEmbedConsumer) {
 }
 
 prototype(Ttree.Oembed:Resource) >
-prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Template) {
-	templatePath = 'resource://Ttree.Oembed/Private/Templates/TypoScript/Resource.html'
+prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
+	templatePath = 'resource://Ttree.Oembed/Private/Templates/NodeTypes/Resource.html'
 
 	attributes.itemscope = 'itemscope'
 	attributes.itemtype = 'http://schema.org/VideoObject'
