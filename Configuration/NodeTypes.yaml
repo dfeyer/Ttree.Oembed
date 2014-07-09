@@ -3,11 +3,12 @@
     - 'TYPO3.Neos:Content'
   ui:
     group: 'general'
-    label: 'oEmbed Resource'
+    label: 'Video/oEmbed'
     inspector:
       groups:
         options:
-          label: 'oEmbed Resource'
+          label: 'Video/oEmbed'
+          position: 1
   properties:
     uri:
       type: string
