@@ -12,7 +12,6 @@ namespace Ttree\Oembed\Resource;
  *                                                                        */
 
 use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Reflection\ObjectAccess;
 
 /**
  * oEmbed AbstractResource
@@ -98,37 +97,6 @@ abstract class AbstractResource {
 	 * @var integer
 	 */
 	protected $thumbnailHeight = 0;
-
-	/**
-	 * Create a Resource object from the supplied resource.
-	 *
-	 * @param \stdClass $resource The resource to create an Resource from.
-	 * @return \Ttree\Oembed\Resource\AbstractResource
-	 * @throws \Ttree\Oembed\Exception
-	 * @todo create a proper factory
-	 */
-	public static function factory($resource) {
-		$type      = $resource->type;
-		$className = 'Ttree\\Oembed\\Resource\\' . ucfirst(strtolower($type));
-
-		if (!class_exists($className)) {
-			throw new \Ttree\Oembed\Exception(
-				'Unknown resource type "' . $type . '".',
-				\Ttree\Oembed\Exception::UNKNOWN_RESOURCE_TYPE
-			);
-		}
-
-		$object = new $className();
-
-		foreach ($resource as $property => $value) {
-			if (!ObjectAccess::isPropertySettable($object, $property)) {
-				continue;
-			}
-			ObjectAccess::setProperty($object, $property, $value);
-		}
-
-		return $object;
-	}
 
 	/**
 	 * Get a string representation of the oEmbed resource.

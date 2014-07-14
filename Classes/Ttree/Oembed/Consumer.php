@@ -11,9 +11,9 @@ namespace Ttree\Oembed;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use Ttree\Oembed\Exception;
 use Ttree\Oembed\Resource\AbstractResource;
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Cache\Frontend\AbstractFrontend;
 use TYPO3\Flow\Log\SystemLoggerInterface;
 use TYPO3\Flow\Utility\Arrays;
 
@@ -47,14 +47,20 @@ class Consumer {
 
 	/**
 	 * @Flow\Inject
-	 * @var \Ttree\Oembed\Browser
+	 * @var Browser
 	 */
 	protected $browser;
 
 	/**
-	 * @var \TYPO3\Flow\Cache\Frontend\AbstractFrontend
+	 * @var AbstractFrontend
 	 */
 	protected $resourceCache;
+
+	/**
+	 * @Flow\Inject
+	 * @var ResourceFactory
+	 */
+	protected $resourceFactory;
 
 	/**
 	 * Providers
@@ -64,7 +70,7 @@ class Consumer {
 	protected $providers = array();
 
 	/**
-	 * @var \Ttree\Oembed\RequestParameters
+	 * @var RequestParameters
 	 */
 	protected $requestParameters = NULL;
 
@@ -93,7 +99,7 @@ class Consumer {
 	 * @param  string   $url                  The URL of the resource to consume.
 	 * @param  Provider $provider             The provider to use.
 	 * @param  string   $format               The format of the data to fetch.
-	 * @return \Ttree\Oembed\Resource\AbstractResource An object representation of the oEmbed resource or NULL on error
+	 * @return AbstractResource An object representation of the oEmbed resource or NULL on error
 	 */
 	public function consume($url, Provider $provider = NULL, $format = self::FORMAT_DEFAULT) {
 		if ($this->requestParameters instanceof RequestParameters) {
@@ -143,24 +149,20 @@ class Consumer {
 	 * Process the JSON response returned by the provider.
 	 *
 	 * @param string $response The JSON data returned by the provider.
-	 * @return \Ttree\Oembed\Resource\AbstractResource
+	 * @return AbstractResource
 	 */
 	protected function processJsonResponse($response) {
-		return AbstractResource::factory(
-			json_decode($response)
-		);
+		return $this->resourceFactory->create(json_decode($response));
 	}
 
 	/**
 	 * Process the XML response returned by the provider.
 	 *
 	 * @param string $response The XML data returned by the provider.
-	 * @return \Ttree\Oembed\Resource\AbstractResource
+	 * @return AbstractResource
 	 */
 	protected function processXmlResponse($response) {
-		return AbstractResource::factory(
-			simplexml_load_string($response)
-		);
+		return $this->resourceFactory->create(simplexml_load_string($response));
 	}
 
 	/**
@@ -217,14 +219,14 @@ class Consumer {
 	}
 
 	/**
-	 * @param \Ttree\Oembed\RequestParameters $requestParameters
+	 * @param RequestParameters $requestParameters
 	 */
 	public function setRequestParameters(RequestParameters $requestParameters) {
 		$this->requestParameters = $requestParameters;
 	}
 
 	/**
-	 * @return \Ttree\Oembed\RequestParameters
+	 * @return RequestParameters
 	 */
 	public function getRequestParameters() {
 		return $this->requestParameters;
