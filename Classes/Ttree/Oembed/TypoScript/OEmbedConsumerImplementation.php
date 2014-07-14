@@ -76,8 +76,6 @@ class OEmbedConsumerImplementation extends AbstractTypoScriptObject {
 	 * @return \Ttree\Oembed\Resource\AbstractResource An object representation of the oEmbed resource or NULL on error
 	 */
 	public function evaluate() {
-		$resourceObject = NULL;
-
 		$consumer = new Consumer();
 		$this->prepareRequestParameters($consumer);
 
