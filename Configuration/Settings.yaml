@@ -1,0 +1,6 @@
+Ttree:
+  Oembed:
+    resource:
+      classNamePattern: 'Ttree\Oembed\Resource\@type'
+      postProcessors:
+        youtube: 'Ttree\Oembed\Resource\PostProcessor\YoutubePostProcessor'
