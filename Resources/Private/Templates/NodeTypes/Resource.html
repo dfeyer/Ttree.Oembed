@@ -4,7 +4,7 @@
     <f:then>
         <div{attributes -> f:format.raw()}>
         <meta itemprop="url" content="{url}">
-        <div class="oembed-video-container">
+        <div{containerAttributes -> f:format.raw()}>
             {content -> f:format.raw()}
         </div>
         <f:if condition="{hasCaption}">

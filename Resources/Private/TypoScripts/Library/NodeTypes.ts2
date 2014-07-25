@@ -15,6 +15,10 @@ prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
 		class = 'video-container'
 	}
 
+	containerAttributes = TYPO3.TypoScript:Attributes {
+		class = 'oembed-video-container'
+	}
+
 	content = Ttree.Oembed:OEmbedConsumer
 
 	errorMessage = TYPO3.TypoScript:Value {
