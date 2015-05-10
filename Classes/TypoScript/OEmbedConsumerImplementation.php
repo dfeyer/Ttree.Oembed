@@ -79,7 +79,9 @@ class OEmbedConsumerImplementation extends AbstractTypoScriptObject {
 		$consumer = new Consumer();
 		$this->prepareRequestParameters($consumer);
 
-		return $consumer->consume($this->tsValue('uri'));
+		$uri = $this->tsValue('uri');
+
+		return $consumer->consume($uri);
 	}
 
 	/**

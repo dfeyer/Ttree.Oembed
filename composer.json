@@ -6,8 +6,8 @@
 		"typo3/flow": "*"
 	},
 	"autoload": {
-		"psr-0": {
-			"Ttree\\Oembed": "Classes"
+		"psr-4": {
+			"Ttree\\Oembed\\": "Classes"
 		}
 	}
 }
