@@ -2,20 +2,26 @@
 
 <f:if condition="{content}">
     <f:then>
-        <div{attributes -> f:format.raw()}>
-        <meta itemprop="url" content="{url}">
-        <div{containerAttributes -> f:format.raw()}>
-            {content -> f:format.raw()}
-        </div>
-        <f:if condition="{hasCaption}">
-            <div
-            {captionAttributes -> f:format.raw()}>
-            {neos:contentElement.editable(property:'caption')}
-            </div>
-        </f:if>
+		<div{attributes -> f:format.raw()}>
+			<div{containerAttributes -> f:format.raw()}>
+				{content -> f:format.raw()}
+			</div>
+			<f:if condition="{hasCaption}">
+				<div
+				{captionAttributes -> f:format.raw()}>
+				{neos:contentElement.editable(property:'caption')}
+				</div>
+			</f:if>
         </div>
     </f:then>
     <f:else>
-        <div class="oembed-video-error" style="margin: 1em 0;">{errorMessage -> f:format.raw()}</div>
+		<f:security.ifAccess privilegeTarget="TYPO3.Neos:Backend.GeneralAccess">
+			<div{attributes -> f:format.raw()}>
+				<f:if condition="{node.context.workspace.name} != 'live'">
+					<div class="oembed-video-error" style="margin: 1em 0;">{errorMessage -> f:format.raw()}</div>
+					<div class="oembed-video-error" style="margin: 1em 0;">Current URI: <a href="{uri}">{uri}</a></div>
+				</f:if>
+			</div>
+		</f:security.ifAccess>
     </f:else>
 </f:if>

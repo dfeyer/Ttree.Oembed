@@ -1,10 +1,3 @@
-prototype(Ttree.Oembed:OEmbedConsumer) {
-	@class = '\\Ttree\\Oembed\\TypoScript\\OEmbedConsumerImplementation'
-	uri = ${q(node).property('uri')}
-	maxWidth = ${q(node).property('maxWidth')}
-	maxHeight = ${q(node).property('maxHeight')}
-}
-
 prototype(Ttree.Oembed:Resource) >
 prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
 	templatePath = 'resource://Ttree.Oembed/Private/Templates/NodeTypes/Resource.html'
@@ -19,20 +12,25 @@ prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
 		class = 'oembed-video-container'
 	}
 
-	content = Ttree.Oembed:OEmbedConsumer
-
 	errorMessage = TYPO3.TypoScript:Value {
 		value = 'Invalid resource URI, please check the property "Resource URI".'
 		@process.wrap = ${"<i>" + value + "</i>"}
 	}
 
 	hasCaption = ${q(node).property('hasCaption')}
-	url = ${q(node).property('uri')}
+	uri = ${q(node).property('uri')}
+	@override.uri = ${this.uri}
+	maximumWidth = 450
+	@override.maximumWidth = ${this.maximumWidth}
+	maximumHeight = 280
+	@override.maximumHeight = ${this.maximumHeight}
 
 	captionAttributes = TYPO3.TypoScript:Attributes {
 		class = 'oembed-video-caption'
 		itemprop = 'description'
 	}
+
+	content = Ttree.Oembed:OEmbedConsumer
 
 	caption = ${q(node).property('caption') ? q(node).property('caption') : 'Enter caption here'}
 }

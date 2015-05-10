@@ -4,3 +4,9 @@ Ttree:
       classNamePattern: 'Ttree\Oembed\Resource\@type'
       postProcessors:
         youtube: 'Ttree\Oembed\Resource\PostProcessor\YoutubePostProcessor'
+
+TYPO3:
+  Neos:
+    typoScript:
+      autoInclude:
+        'Ttree.Oembed': TRUE

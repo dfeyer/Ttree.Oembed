@@ -45,24 +45,24 @@ class OEmbedConsumerImplementation extends AbstractTypoScriptObject {
 	protected $node;
 
 	/**
-	 * @param string $uri
+	 * @return string
 	 */
-	public function setUri($uri) {
-		$this->uri = $uri;
+	public function getUri() {
+		return $this->tsValue('uri');
 	}
 
 	/**
-	 * @param integer $maxHeight
+	 * @return integer
 	 */
-	public function setMaxHeight($maxHeight) {
-		$this->maxHeight = $maxHeight;
+	public function getMaximumWidth() {
+		return (integer)$this->tsValue('maximumWidth');
 	}
 
 	/**
-	 * @param integer $maxWidth
+	 * @return integer
 	 */
-	public function setMaxWidth($maxWidth) {
-		$this->maxWidth = $maxWidth;
+	public function getMaximumHeight() {
+		return (integer)$this->tsValue('maximumHeight');
 	}
 
 	/**
@@ -79,7 +79,7 @@ class OEmbedConsumerImplementation extends AbstractTypoScriptObject {
 		$consumer = new Consumer();
 		$this->prepareRequestParameters($consumer);
 
-		$uri = $this->tsValue('uri');
+		$uri = $this->getUri();
 
 		return $consumer->consume($uri);
 	}
@@ -88,16 +88,16 @@ class OEmbedConsumerImplementation extends AbstractTypoScriptObject {
 	 * @param Consumer $consumer
 	 */
 	protected function prepareRequestParameters(Consumer $consumer) {
-		$maxWidth = $this->tsValue('maxWidth');
-		$maxHeight = $this->tsValue('maxHeight');
-		if ($maxWidth > 0 || $maxHeight > 0) {
-			$requestParameters = new RequestParameters($maxHeight, $maxWidth);
+		$maximumWidth = $this->getMaximumWidth();
+		$maximumHeight = $this->getMaximumHeight();
+		if ($maximumWidth > 0 || $maximumHeight > 0) {
+			$requestParameters = new RequestParameters($maximumHeight, $maximumWidth);
 
-			if ($maxWidth > 0) {
-				$requestParameters->setMaxWidth($maxWidth);
+			if ($maximumWidth > 0) {
+				$requestParameters->setMaxWidth($maximumWidth);
 			}
-			if ($maxHeight > 0) {
-				$requestParameters->setMaxHeight($maxHeight);
+			if ($maximumHeight > 0) {
+				$requestParameters->setMaxHeight($maximumHeight);
 			}
 
 			$consumer->setRequestParameters($requestParameters);
