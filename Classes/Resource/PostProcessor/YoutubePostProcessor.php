@@ -20,24 +20,27 @@ use TYPO3\Flow\Annotations as Flow;
  *
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
-class YoutubePostProcessor implements PostProcessorInterface {
+class YoutubePostProcessor implements PostProcessorInterface
+{
 
-	/**
-	 * @param AbstractResource $resource
-	 * @return boolean
-	 */
-	public function canProcess(AbstractResource $resource) {
-		return ($resource instanceof Video);
-	}
+    /**
+     * @param AbstractResource $resource
+     * @return boolean
+     */
+    public function canProcess(AbstractResource $resource)
+    {
+        return ($resource instanceof Video);
+    }
 
-	/**
-	 * @param AbstractResource $resource
-	 * @return void
-	 */
-	public function process(AbstractResource $resource) {
-		/** @var Video $resource */
-		$html = str_replace('feature=oembed', 'feature=oembed&rel=0', $resource->getHtml());
-		$resource->setHtml($html);
-	}
+    /**
+     * @param AbstractResource $resource
+     * @return void
+     */
+    public function process(AbstractResource $resource)
+    {
+        /** @var Video $resource */
+        $html = str_replace('feature=oembed', 'feature=oembed&rel=0', $resource->getHtml());
+        $resource->setHtml($html);
+    }
 
 }

@@ -18,21 +18,23 @@ use TYPO3\Flow\Validation\Validator\AbstractValidator;
 /**
  * @Flow\Scope("singleton")
  */
-class UriValidator extends AbstractValidator {
+class UriValidator extends AbstractValidator
+{
 
-	/**
-	 * Checks if the given value is a specific boolean value.
-	 *
-	 * @param mixed $value The value that should be validated
-	 * @return void
-	 * @api
-	 */
-	protected function isValid($value) {
-		$consumer = new Consumer();
-		$embedObject = $consumer->consume($value);
-		if ($embedObject === NULL) {
-			$this->addError('This URI has no oEmbed support.', 1403004582, array($value));
-		}
-	}
+    /**
+     * Checks if the given value is a specific boolean value.
+     *
+     * @param mixed $value The value that should be validated
+     * @return void
+     * @api
+     */
+    protected function isValid($value)
+    {
+        $consumer = new Consumer();
+        $embedObject = $consumer->consume($value);
+        if ($embedObject === null) {
+            $this->addError('This URI has no oEmbed support.', 1403004582, [$value]);
+        }
+    }
 
 }

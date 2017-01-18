@@ -11,8 +11,8 @@ namespace Ttree\Oembed\Provider;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
 use Ttree\Oembed\Provider;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * oEmbed Link
@@ -20,18 +20,20 @@ use Ttree\Oembed\Provider;
  * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
-class Flickr extends Provider {
+class Flickr extends Provider
+{
 
-	public function __construct() {
-		parent::__construct(
-			'http://www.flickr.com/services/oembed',
-			array(
-				'http://*.flickr.com/*'
-			),
-			'http://www.flickr.com',
-			'Flickr'
-		);
-	}
+    public function __construct()
+    {
+        parent::__construct(
+            'http://www.flickr.com/services/oembed',
+            [
+                'http://*.flickr.com/*'
+            ],
+            'http://www.flickr.com',
+            'Flickr'
+        );
+    }
 
 }
 

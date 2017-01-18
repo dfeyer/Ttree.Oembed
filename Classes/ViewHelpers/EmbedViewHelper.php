@@ -40,61 +40,65 @@ use TYPO3\Fluid\Core\ViewHelper\Exception;
  * </output>
  *
  */
-class EmbedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper {
+class EmbedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
-	/**
-	 * Renders a representation of a oEmbed resource
-	 *
-	 * @param string $uri
-	 * @param integer $maxWidth
-	 * @param integer $maxHeight
-	 * @param string $objectName
-	 * @return string
-	 * @throws Exception
-	 */
-	public function render($uri, $maxWidth = 0, $maxHeight = 0, $objectName = NULL) {
-		$consumer = new Consumer();
+    /**
+     * Renders a representation of a oEmbed resource
+     *
+     * @param string $uri
+     * @param integer $maxWidth
+     * @param integer $maxHeight
+     * @param string $objectName
+     * @return string
+     * @throws Exception
+     */
+    public function render($uri, $maxWidth = 0, $maxHeight = 0, $objectName = null)
+    {
+        $consumer = new Consumer();
 
-		$this->prepareRequestParameters($maxWidth, $maxHeight, $consumer);
+        $this->prepareRequestParameters($maxWidth, $maxHeight, $consumer);
 
-		$resourceObject = $consumer->consume($uri);
+        $resourceObject = $consumer->consume($uri);
 
-		if ($resourceObject !== NULL) {
-			if ($objectName !== NULL) {
-				if ($this->templateVariableContainer->exists($objectName)) {
-					throw new Exception('Object name for EmbedViewHelper given as: ' . htmlentities($objectName) . '. This variable name is already in use, choose another.', 1359969229);
-				}
-				$this->templateVariableContainer->add($objectName, $resourceObject);
-				$html = $this->renderChildren();
-				$this->templateVariableContainer->remove($objectName);
-			} else {
-				$html = $resourceObject->getAsString();
-			}
-		} else {
-			$html = 'Invalid oEmbed Resource';
-		}
+        if ($resourceObject !== null) {
+            if ($objectName !== null) {
+                if ($this->templateVariableContainer->exists($objectName)) {
+                    throw new Exception('Object name for EmbedViewHelper given as: ' . htmlentities($objectName) . '. This variable name is already in use, choose another.', 1359969229);
+                }
+                $this->templateVariableContainer->add($objectName, $resourceObject);
+                $html = $this->renderChildren();
+                $this->templateVariableContainer->remove($objectName);
+            } else {
+                $html = $resourceObject->getAsString();
+            }
+        } else {
+            $html = 'Invalid oEmbed Resource';
+        }
 
-		return $html;
-	}
+        return $html;
+    }
 
-	/**
-	 * @param integer $maxWidth
-	 * @param integer $maxHeight
-	 * @param Consumer $consumer
-	 */
-	protected function prepareRequestParameters($maxWidth, $maxHeight, Consumer $consumer) {
-		if ($maxWidth > 0 || $maxHeight > 0) {
-			$requestParameters = new RequestParameters($maxHeight, $maxWidth);
+    /**
+     * @param integer $maxWidth
+     * @param integer $maxHeight
+     * @param Consumer $consumer
+     */
+    protected function prepareRequestParameters($maxWidth, $maxHeight, Consumer $consumer)
+    {
+        if ($maxWidth > 0 || $maxHeight > 0) {
+            $requestParameters = new RequestParameters($maxHeight, $maxWidth);
 
-			if ($maxWidth > 0) {
-				$requestParameters->setMaxWidth($maxWidth);
-			}
-			if ($maxHeight > 0) {
-				$requestParameters->setMaxHeight($maxHeight);
-			}
+            if ($maxWidth > 0) {
+                $requestParameters->setMaxWidth($maxWidth);
+            }
+            if ($maxHeight > 0) {
+                $requestParameters->setMaxHeight($maxHeight);
+            }
 
-			$consumer->setRequestParameters($requestParameters);
-		}
-	}
+            $consumer->setRequestParameters($requestParameters);
+        }
+    }
 }
+
 ?>

@@ -19,7 +19,8 @@ use TYPO3\Flow\Annotations as Flow;
  * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
-class Video extends Html {
+class Video extends Html
+{
 
 }
 

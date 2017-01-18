@@ -11,8 +11,8 @@ namespace Ttree\Oembed\Provider;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
 use Ttree\Oembed\Provider;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * oEmbed Link
@@ -20,18 +20,20 @@ use Ttree\Oembed\Provider;
  * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
-class DailyMotion extends Provider {
+class DailyMotion extends Provider
+{
 
-	public function __construct() {
-		parent::__construct(
-			'http://www.dailymotion.com/services/oembed?format=json',
-			array(
-				'http://www.dailymotion.com/video/*',
-			),
-			'http://www.dailymotion.com',
-			'DailyMotion'
-		);
-	}
+    public function __construct()
+    {
+        parent::__construct(
+            'http://www.dailymotion.com/services/oembed?format=json',
+            [
+                'http://www.dailymotion.com/video/*',
+            ],
+            'http://www.dailymotion.com',
+            'DailyMotion'
+        );
+    }
 
 }
 

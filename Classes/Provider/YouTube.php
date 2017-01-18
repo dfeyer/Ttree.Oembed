@@ -11,8 +11,8 @@ namespace Ttree\Oembed\Provider;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
 use Ttree\Oembed\Provider;
+use TYPO3\Flow\Annotations as Flow;
 
 /**
  * oEmbed Link
@@ -20,18 +20,20 @@ use Ttree\Oembed\Provider;
  * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
-class YouTube extends Provider {
+class YouTube extends Provider
+{
 
-	public function __construct() {
-		parent::__construct(
-			'http://www.youtube.com/oembed',
-			array(
-				'http://*.youtube.com/*'
-			),
-			'http://www.youtube.com',
-			'YouTube'
-		);
-	}
+    public function __construct()
+    {
+        parent::__construct(
+            'http://www.youtube.com/oembed',
+            [
+                'http://*.youtube.com/*'
+            ],
+            'http://www.youtube.com',
+            'YouTube'
+        );
+    }
 
 }
 

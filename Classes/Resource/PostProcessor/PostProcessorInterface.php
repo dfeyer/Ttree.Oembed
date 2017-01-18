@@ -19,18 +19,19 @@ use TYPO3\Flow\Annotations as Flow;
  *
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
-interface PostProcessorInterface {
+interface PostProcessorInterface
+{
 
-	/**
-	 * @param AbstractResource $resource
-	 * @return boolean
-	 */
-	public function canProcess(AbstractResource $resource);
+    /**
+     * @param AbstractResource $resource
+     * @return boolean
+     */
+    public function canProcess(AbstractResource $resource);
 
-	/**
-	 * @param AbstractResource $resource
-	 * @return void
-	 */
-	public function process(AbstractResource $resource);
+    /**
+     * @param AbstractResource $resource
+     * @return void
+     */
+    public function process(AbstractResource $resource);
 
 }

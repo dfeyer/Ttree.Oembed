@@ -19,11 +19,13 @@ use TYPO3\Flow\Annotations as Flow;
  * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
-class Link extends AbstractResource {
+class Link extends AbstractResource
+{
 
-	public function getAsString() {
-		return $this->title;
-	}
+    public function getAsString()
+    {
+        return $this->title;
+    }
 
 }
 
