@@ -11,8 +11,8 @@ namespace Ttree\Oembed;
  * source code.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Utility\Arrays;
+use Neos\Flow\Annotations as Flow;
+use Neos\Utility\Arrays;
 
 /**
  * oEmbed Request Parameters

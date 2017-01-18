@@ -1,5 +1,5 @@
 prototype(Ttree.Oembed:Resource) >
-prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
+prototype(Ttree.Oembed:Resource) < prototype(Neos.Neos:Content) {
 	templatePath = 'resource://Ttree.Oembed/Private/Templates/NodeTypes/Resource.html'
 
 	attributes {
@@ -8,11 +8,11 @@ prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
 		class = 'video-container'
 	}
 
-	containerAttributes = TYPO3.TypoScript:Attributes {
+	containerAttributes = Neos.Fusion:Attributes {
 		class = 'oembed-video-container'
 	}
 
-	errorMessage = TYPO3.TypoScript:Value {
+	errorMessage = Neos.Fusion:Value {
 		value = 'Invalid resource URI, please check the property "Resource URI".'
 		@process.wrap = ${"<i>" + value + "</i>"}
 	}
@@ -25,7 +25,7 @@ prototype(Ttree.Oembed:Resource) < prototype(TYPO3.Neos:Content) {
 	maximumHeight = 280
 	@override.maximumHeight = ${this.maximumHeight}
 
-	captionAttributes = TYPO3.TypoScript:Attributes {
+	captionAttributes = Neos.Fusion:Attributes {
 		class = 'oembed-video-caption'
 		itemprop = 'description'
 	}

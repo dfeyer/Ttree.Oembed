@@ -13,7 +13,7 @@ namespace Ttree\Oembed\Resource\PostProcessor;
 
 use Ttree\Oembed\Resource\AbstractResource;
 use Ttree\Oembed\Resource\Video;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Youtube Resource PostProcessor

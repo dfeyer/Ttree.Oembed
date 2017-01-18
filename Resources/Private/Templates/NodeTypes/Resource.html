@@ -1,4 +1,4 @@
-{namespace neos=TYPO3\Neos\ViewHelpers}
+{namespace neos=Neos\Neos\ViewHelpers}
 
 <f:if condition="{content}">
     <f:then>
@@ -15,7 +15,7 @@
         </div>
     </f:then>
     <f:else>
-		<f:security.ifAccess privilegeTarget="TYPO3.Neos:Backend.GeneralAccess">
+		<f:security.ifAccess privilegeTarget="Neos.Neos:Backend.GeneralAccess">
 			<div{attributes -> f:format.raw()}>
 				<f:if condition="{node.context.workspace.name} != 'live'">
 					<div class="oembed-video-error" style="margin: 1em 0;">{errorMessage -> f:format.raw()}</div>

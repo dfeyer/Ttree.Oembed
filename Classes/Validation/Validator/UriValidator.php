@@ -12,8 +12,8 @@ namespace Ttree\Oembed\Validation\Validator;
  */
 
 use Ttree\Oembed\Consumer;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Validation\Validator\AbstractValidator;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Validation\Validator\AbstractValidator;
 
 /**
  * @Flow\Scope("singleton")
