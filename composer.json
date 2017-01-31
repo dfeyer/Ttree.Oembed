@@ -2,6 +2,14 @@
 	"name": "ttree/oembed",
 	"type": "neos-package",
 	"description": "oEmbed utility package for Flow with support for Neos",
+	"license": [
+    "MIT"
+  ],
+	"keywords": [
+		"flow",
+		"neos",
+		"oembed"
+	],
 	"require": {
 		"typo3/flow": "~3.0"
 	},
