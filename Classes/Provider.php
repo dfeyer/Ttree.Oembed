@@ -12,7 +12,7 @@ namespace Ttree\Oembed;
  */
 
 use Ttree\Oembed\Url\Schema;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * oEmbed Provider

@@ -13,16 +13,16 @@ namespace Ttree\Oembed\TypoScript;
 
 use Ttree\Oembed\Consumer;
 use Ttree\Oembed\RequestParameters;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
-use TYPO3\TypoScript\TypoScriptObjects\AbstractTypoScriptObject;
+use Neos\Flow\Annotations as Flow;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Fusion\FusionObjects\AbstractFusionObject;
 
 /**
  * TypoScript consumer for oEmbed resource
  *
  * @Flow\Scope("prototype")
  */
-class OEmbedConsumerImplementation extends AbstractTypoScriptObject
+class OEmbedConsumerImplementation extends AbstractFusionObject
 {
 
     /**
@@ -70,7 +70,7 @@ class OEmbedConsumerImplementation extends AbstractTypoScriptObject
     }
 
     /**
-     * @param \TYPO3\TYPO3CR\Domain\Model\NodeInterface $node
+     * @param \Neos\ContentRepository\Domain\Model\NodeInterface $node
      */
     public function setNode($node)
     {

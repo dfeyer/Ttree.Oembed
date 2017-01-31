@@ -5,8 +5,8 @@ Ttree:
       postProcessors:
         youtube: 'Ttree\Oembed\Resource\PostProcessor\YoutubePostProcessor'
 
-TYPO3:
+Neos:
   Neos:
-    typoScript:
+    fusion:
       autoInclude:
         'Ttree.Oembed': TRUE

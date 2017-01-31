@@ -13,8 +13,8 @@ namespace Ttree\Oembed\ViewHelpers;
 
 use Ttree\Oembed\Consumer;
 use Ttree\Oembed\RequestParameters;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Fluid\Core\ViewHelper\Exception;
+use Neos\Flow\Annotations as Flow;
+use Neos\FluidAdaptor\Core\ViewHelper\Exception;
 
 /**
  * Renders a representation of a oEmbed resource.
@@ -40,7 +40,7 @@ use TYPO3\Fluid\Core\ViewHelper\Exception;
  * </output>
  *
  */
-class EmbedViewHelper extends \TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper
+class EmbedViewHelper extends \Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper
 {
 
     /**

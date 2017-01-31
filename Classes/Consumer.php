@@ -12,10 +12,10 @@ namespace Ttree\Oembed;
  */
 
 use Ttree\Oembed\Resource\AbstractResource;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Cache\Frontend\AbstractFrontend;
-use TYPO3\Flow\Log\SystemLoggerInterface;
-use TYPO3\Flow\Utility\Arrays;
+use Neos\Flow\Annotations as Flow;
+use Neos\Cache\Frontend\AbstractFrontend;
+use Neos\Flow\Log\SystemLoggerInterface;
+use Neos\Utility\Arrays;
 
 /**
  * oEmbed Consumer

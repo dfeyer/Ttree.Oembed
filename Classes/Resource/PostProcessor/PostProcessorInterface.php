@@ -12,7 +12,7 @@ namespace Ttree\Oembed\Resource\PostProcessor;
  */
 
 use Ttree\Oembed\Resource\AbstractResource;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * PostProcessor Interface

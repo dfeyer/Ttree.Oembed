@@ -13,9 +13,9 @@ namespace Ttree\Oembed;
 
 use Ttree\Oembed\Resource\AbstractResource;
 use Ttree\Oembed\Resource\PostProcessor\PostProcessorInterface;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Object\ObjectManagerInterface;
-use TYPO3\Flow\Reflection\ObjectAccess;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\ObjectManagement\ObjectManagerInterface;
+use Neos\Utility\ObjectAccess;
 
 /**
  * Resource Factory
@@ -27,13 +27,13 @@ class ResourceFactory
 {
 
     /**
-     * @Flow\Inject(setting="resource.classNamePattern")
+     * @Flow\InjectConfiguration(path="resource.classNamePattern")
      * @var string
      */
     protected $resourceClassNamePattern;
 
     /**
-     * @Flow\Inject(setting="resource.postProcessors")
+     * @Flow\InjectConfiguration(path="resource.postProcessors")
      * @var string
      */
     protected $postProcessors = [];
