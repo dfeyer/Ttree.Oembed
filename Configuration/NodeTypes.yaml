@@ -1,6 +1,6 @@
 'Ttree.Oembed:Resource':
   superTypes:
-    - 'TYPO3.Neos:Content'
+    'TYPO3.Neos:Content': true
   ui:
     group: 'general'
     label: 'Video/oEmbed'
@@ -21,11 +21,11 @@
       type: boolean
       ui:
         label: 'Enable caption'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'options'
     caption:
       type: string
       defaultValue: 'Enter caption here'
       ui:
-        inlineEditable: TRUE
+        inlineEditable: true

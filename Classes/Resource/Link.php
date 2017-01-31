@@ -1,15 +1,15 @@
 <?php
 namespace Ttree\Oembed\Resource;
 
-/*                                                                        *
- * This script belongs to the Flow package "Ttree.Oembed".                *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU General Public License, either version 3 of the   *
- * License, or (at your option) any later version.                        *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+/*
+ * This file is part of the Ttree.Oembed package.
+ *
+ * (c) Dominique Feyer <dfeyer@ttree.ch>
+ *
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
 
 use TYPO3\Flow\Annotations as Flow;
 
@@ -19,11 +19,13 @@ use TYPO3\Flow\Annotations as Flow;
  * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
-class Link extends AbstractResource {
+class Link extends AbstractResource
+{
 
-	public function getAsString() {
-		return $this->title;
-	}
+    public function getAsString()
+    {
+        return $this->title;
+    }
 
 }
 

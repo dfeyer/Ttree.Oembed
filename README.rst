@@ -1,9 +1,9 @@
-oEmbed utility package for TYPO3 Flow & Fluid with support for TYPO3 Neos
-=========================================================================
+oEmbed utility package for Flow with support for Neos
+=====================================================
 
-This package for TYPO3 Flow and Fluid add support for oEmbed.
+This package for Flow adds support for oEmbed.
 
-This package also contain a TYPO3 Neos Node Type definition to integrate oEmbed resources in your Neos project.
+This package also contain a Neos Node Type definition to integrate oEmbed resources in your Neos project.
 
 created by Dominique Feyer <dfeyer@ttree.ch> http://www.ttree.ch
 
@@ -11,8 +11,8 @@ Features
 ========
 
 - Consume oEmbed resource
-- TYPO3 Fluid oEmbed ViewHelper
-- TYPO3 Neos Node Type definition
+- Fluid oEmbed ViewHelper
+- Neos Node Type definition
 
 How to use the plugin ?
 =======================

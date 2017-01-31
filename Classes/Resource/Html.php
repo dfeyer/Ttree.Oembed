@@ -1,15 +1,15 @@
 <?php
 namespace Ttree\Oembed\Resource;
 
-/*                                                                        *
- * This script belongs to the Flow package "Ttree.Oembed".                *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU General Public License, either version 3 of the   *
- * License, or (at your option) any later version.                        *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+/*
+ * This file is part of the Ttree.Oembed package.
+ *
+ * (c) Dominique Feyer <dfeyer@ttree.ch>
+ *
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
 
 use TYPO3\Flow\Annotations as Flow;
 
@@ -19,86 +19,94 @@ use TYPO3\Flow\Annotations as Flow;
  * @author  Romain Ruetschi <romain.ruetschi@gmail.com>
  * @author  Dominique Feyer <dfeyer@ttree.ch>
  */
-class Html extends AbstractResource {
+class Html extends AbstractResource
+{
 
-	/**
-	 * HTML
-	 *
-	 * @var string
-	 */
-	protected $html = 0;
+    /**
+     * HTML
+     *
+     * @var string
+     */
+    protected $html = 0;
 
-	/**
-	 * Width
-	 *
-	 * @var integer
-	 */
-	protected $width = 0;
+    /**
+     * Width
+     *
+     * @var integer
+     */
+    protected $width = 0;
 
-	/**
-	 * Height
-	 *
-	 * @var integer
-	 */
-	protected $height = 0;
+    /**
+     * Height
+     *
+     * @var integer
+     */
+    protected $height = 0;
 
-	/**
-	 * @return string
-	 */
-	public function getAsString() {
-		return $this->html;
-	}
+    /**
+     * @return string
+     */
+    public function getAsString()
+    {
+        return $this->html;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getHtml() {
-		return $this->html;
-	}
+    /**
+     * @return string
+     */
+    public function getHtml()
+    {
+        return $this->html;
+    }
 
-	/**
-	 * @param string $html
-	 * @return Html
-	 */
-	public function setHtml($html) {
-		$this->html = $html;
+    /**
+     * @param string $html
+     * @return Html
+     */
+    public function setHtml($html)
+    {
+        $this->html = $html;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getWidth() {
-		return $this->width;
-	}
+    /**
+     * @return int
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
 
-	/**
-	 * @param int $width
-	 * @return Html
-	 */
-	public function setWidth($width) {
-		$this->width = $width;
+    /**
+     * @param int $width
+     * @return Html
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getHeight() {
-		return $this->height;
-	}
+    /**
+     * @return int
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
 
-	/**
-	 * @param int $height
-	 * @return Html
-	 */
-	public function setHeight($height) {
-		$this->height = $height;
+    /**
+     * @param int $height
+     * @return Html
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
 
-		return $this;
-	}
+        return $this;
+    }
 }
 
 ?>
