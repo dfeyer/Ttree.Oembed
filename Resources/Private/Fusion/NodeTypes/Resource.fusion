@@ -1,0 +1,36 @@
+prototype(Ttree.Oembed:Resource) >
+prototype(Ttree.Oembed:Resource) < prototype(Neos.Neos:Content) {
+    templatePath = 'resource://Ttree.Oembed/Private/Templates/NodeTypes/Resource.html'
+
+    attributes {
+        itemscope = 'itemscope'
+        itemtype = 'http://schema.org/VideoObject'
+        class = 'video-container'
+    }
+
+    containerAttributes = Neos.Fusion:Attributes {
+        class = 'oembed-video-container'
+    }
+
+    errorMessage = Neos.Fusion:Value {
+        value = 'Invalid resource URI, please check the property "Resource URI".'
+        @process.wrap = ${"<i>" + value + "</i>"}
+    }
+
+    hasCaption = ${q(node).property('hasCaption')}
+    uri = ${q(node).property('uri')}
+    @context.uri = ${this.uri}
+    maximumWidth = 450
+    @context.maximumWidth = ${this.maximumWidth}
+    maximumHeight = 280
+    @context.maximumHeight = ${this.maximumHeight}
+
+    captionAttributes = Neos.Fusion:Attributes {
+        class = 'oembed-video-caption'
+        itemprop = 'description'
+    }
+
+    content = Ttree.Oembed:OEmbedConsumer
+
+    caption = ${q(node).property('caption') ? q(node).property('caption') : 'Enter caption here'}
+}

@@ -1,2 +1,2 @@
 include: NodeTypes/*
-include: TypoScriptObjects/*
+include: FusionObjects/*
