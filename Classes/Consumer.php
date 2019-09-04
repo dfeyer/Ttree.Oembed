@@ -11,10 +11,12 @@ namespace Ttree\Oembed;
  * source code.
  */
 
+use Neos\Flow\Log\ThrowableStorageInterface;
+use Neos\Flow\Log\Utility\LogEnvironment;
 use Ttree\Oembed\Resource\AbstractResource;
 use Neos\Flow\Annotations as Flow;
 use Neos\Cache\Frontend\AbstractFrontend;
-use Neos\Flow\Log\SystemLoggerInterface;
+use Psr\Log\LoggerInterface;
 use Neos\Utility\Arrays;
 
 /**
@@ -77,9 +79,15 @@ class Consumer
 
     /**
      * @Flow\Inject
-     * @var SystemLoggerInterface
+     * @var ThrowableStorageInterface
      */
-    protected $systemLogger;
+    protected $throwableStorage;
+
+    /**
+     * @Flow\Inject
+     * @var LoggerInterface
+     */
+    protected $logger;
 
     /**
      * Set the available providers.
@@ -141,7 +149,8 @@ class Consumer
             // Save the resource in cache
             $this->resourceCache->set($cacheKey, $resource);
         } catch (Exception $exception) {
-            $this->systemLogger->logException($exception);
+            $message = $this->throwableStorage->logThrowable($exception);
+            $this->logger->error($message, LogEnvironment::fromMethodName(__METHOD__));
             $resource = null;
         }
 
