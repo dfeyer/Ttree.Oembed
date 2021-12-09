@@ -50,7 +50,7 @@ class OEmbedConsumerImplementation extends AbstractFusionObject
      */
     public function getUri()
     {
-        return $this->tsValue('uri');
+        return $this->fusionValue('uri');
     }
 
     /**
@@ -58,7 +58,7 @@ class OEmbedConsumerImplementation extends AbstractFusionObject
      */
     public function getMaximumWidth()
     {
-        return (integer)$this->tsValue('maximumWidth');
+        return (integer)$this->fusionValue('maximumWidth');
     }
 
     /**
@@ -66,7 +66,7 @@ class OEmbedConsumerImplementation extends AbstractFusionObject
      */
     public function getMaximumHeight()
     {
-        return (integer)$this->tsValue('maximumHeight');
+        return (integer)$this->fusionValue('maximumHeight');
     }
 
     /**
